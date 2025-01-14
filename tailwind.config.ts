@@ -13,6 +13,10 @@ export default {
   },
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["var(--font-bowlby-sc)"],
+        mono: ["var(--font-dm-mono)"],
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
