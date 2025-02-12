@@ -1,0 +1,42 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"heading": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading1",
+						"content": {
+							"text": "Familiar Skateboards",
+							"spans": []
+						},
+						"direction": "ltr"
+					}
+				]
+			},
+			"body": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Consectetur velit id do ea dolore sunt Lorem. Esse qui do est ad sunt duis aute tempor est duis qui dolore officia sit. Aliquip cillum nostrud incididunt laboris ea dolor aute in ullamco magna labore ullamco ipsum sit."
+						}
+					}
+				]
+			},
+			"button": {
+				"key": "ca8c9da5-70ff-4f7a-9470-fd67f0541641",
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "http://twitter.com",
+					"text": "your"
+				}
+			}
+		},
+		"items": []
+	}
+]
