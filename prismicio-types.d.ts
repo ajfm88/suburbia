@@ -69,7 +69,87 @@ export type HomepageDocument<Lang extends string = string> =
     Lang
   >;
 
-export type AllDocumentTypes = HomepageDocument;
+/**
+ * Item in *Setings → Navigation*
+ */
+export interface SetingsDocumentDataNavigationItem {
+  /**
+   * Link field in *Setings → Navigation*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: setings.navigation[].link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+}
+
+/**
+ * Content for Setings documents
+ */
+interface SetingsDocumentData {
+  /**
+   * Site Title field in *Setings*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: setings.site_title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  site_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *Setings*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: setings.meta_description
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Fallback OG Image field in *Setings*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: setings.fallback_og_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  fallback_og_image: prismic.ImageField<never>;
+
+  /**
+   * Navigation field in *Setings*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: setings.navigation[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  navigation: prismic.GroupField<Simplify<SetingsDocumentDataNavigationItem>>;
+}
+
+/**
+ * Setings document from Prismic
+ *
+ * - **API ID**: `setings`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type SetingsDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<SetingsDocumentData>,
+    "setings",
+    Lang
+  >;
+
+export type AllDocumentTypes = HomepageDocument | SetingsDocument;
 
 /**
  * Primary content in *Hero → Default → Primary*
@@ -157,6 +237,9 @@ declare module "@prismicio/client" {
       HomepageDocument,
       HomepageDocumentData,
       HomepageDocumentDataSlicesSlice,
+      SetingsDocument,
+      SetingsDocumentData,
+      SetingsDocumentDataNavigationItem,
       AllDocumentTypes,
       HeroSlice,
       HeroSliceDefaultPrimary,
