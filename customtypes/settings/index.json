@@ -1,17 +1,11 @@
 {
   "format": "custom",
-  "id": "setings",
-  "label": "Setings",
-  "repeatable": true,
+  "id": "settings",
+  "label": "Settings",
+  "repeatable": false,
   "status": true,
   "json": {
     "Main": {
-      "uid": {
-        "type": "UID",
-        "config": {
-          "label": "UID"
-        }
-      },
       "site_title": {
         "type": "Text",
         "config": {

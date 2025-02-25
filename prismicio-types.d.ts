@@ -4,7 +4,7 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
-type HomepageDocumentDataSlicesSlice = HeroSlice;
+type HomepageDocumentDataSlicesSlice = ProductGridSlice | HeroSlice;
 
 /**
  * Content for Homepage documents
@@ -70,86 +70,160 @@ export type HomepageDocument<Lang extends string = string> =
   >;
 
 /**
- * Item in *Setings → Navigation*
+ * Item in *Settings → Navigation*
  */
-export interface SetingsDocumentDataNavigationItem {
+export interface SettingsDocumentDataNavigationItem {
   /**
-   * Link field in *Setings → Navigation*
+   * Link field in *Settings → Navigation*
    *
    * - **Field Type**: Link
    * - **Placeholder**: *None*
-   * - **API ID Path**: setings.navigation[].link
+   * - **API ID Path**: settings.navigation[].link
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
 }
 
 /**
- * Content for Setings documents
+ * Content for Settings documents
  */
-interface SetingsDocumentData {
+interface SettingsDocumentData {
   /**
-   * Site Title field in *Setings*
+   * Site Title field in *Settings*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: setings.site_title
+   * - **API ID Path**: settings.site_title
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   site_title: prismic.KeyTextField;
 
   /**
-   * Meta Description field in *Setings*
+   * Meta Description field in *Settings*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: setings.meta_description
+   * - **API ID Path**: settings.meta_description
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   meta_description: prismic.KeyTextField;
 
   /**
-   * Fallback OG Image field in *Setings*
+   * Fallback OG Image field in *Settings*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: setings.fallback_og_image
+   * - **API ID Path**: settings.fallback_og_image
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   fallback_og_image: prismic.ImageField<never>;
 
   /**
-   * Navigation field in *Setings*
+   * Navigation field in *Settings*
    *
    * - **Field Type**: Group
    * - **Placeholder**: *None*
-   * - **API ID Path**: setings.navigation[]
+   * - **API ID Path**: settings.navigation[]
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#group
    */
-  navigation: prismic.GroupField<Simplify<SetingsDocumentDataNavigationItem>>;
+  navigation: prismic.GroupField<Simplify<SettingsDocumentDataNavigationItem>>;
 }
 
 /**
- * Setings document from Prismic
+ * Settings document from Prismic
  *
- * - **API ID**: `setings`
+ * - **API ID**: `settings`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type SettingsDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<SettingsDocumentData>,
+    "settings",
+    Lang
+  >;
+
+/**
+ * Content for Skateboard documents
+ */
+interface SkateboardDocumentData {
+  /**
+   * Name field in *Skateboard*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: skateboard.name
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  name: prismic.KeyTextField;
+
+  /**
+   * Image field in *Skateboard*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: skateboard.image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * Price (cents) field in *Skateboard*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: skateboard.price
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#number
+   */
+  price: prismic.NumberField;
+
+  /**
+   * Customizer Link field in *Skateboard*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: skateboard.customizer_link
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  customizer_link: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+}
+
+/**
+ * Skateboard document from Prismic
+ *
+ * - **API ID**: `skateboard`
  * - **Repeatable**: `true`
  * - **Documentation**: https://prismic.io/docs/custom-types
  *
  * @typeParam Lang - Language API ID of the document.
  */
-export type SetingsDocument<Lang extends string = string> =
+export type SkateboardDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<
-    Simplify<SetingsDocumentData>,
-    "setings",
+    Simplify<SkateboardDocumentData>,
+    "skateboard",
     Lang
   >;
 
-export type AllDocumentTypes = HomepageDocument | SetingsDocument;
+export type AllDocumentTypes =
+  | HomepageDocument
+  | SettingsDocument
+  | SkateboardDocument;
 
 /**
  * Primary content in *Hero → Default → Primary*
@@ -213,6 +287,88 @@ type HeroSliceVariation = HeroSliceDefault;
  */
 export type HeroSlice = prismic.SharedSlice<"hero", HeroSliceVariation>;
 
+/**
+ * Item in *ProductGrid → Default → Primary → Product*
+ */
+export interface ProductGridSliceDefaultPrimaryProductItem {
+  /**
+   * Skateboard field in *ProductGrid → Default → Primary → Product*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: product_grid.default.primary.product[].skateboard
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  skateboard: prismic.ContentRelationshipField<"skateboard">;
+}
+
+/**
+ * Primary content in *ProductGrid → Default → Primary*
+ */
+export interface ProductGridSliceDefaultPrimary {
+  /**
+   * Heading field in *ProductGrid → Default → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: *None*
+   * - **API ID Path**: product_grid.default.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  heading: prismic.TitleField;
+
+  /**
+   * Body field in *ProductGrid → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: product_grid.default.primary.body
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  body: prismic.RichTextField;
+
+  /**
+   * Product field in *ProductGrid → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: product_grid.default.primary.product[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  product: prismic.GroupField<
+    Simplify<ProductGridSliceDefaultPrimaryProductItem>
+  >;
+}
+
+/**
+ * Default variation for ProductGrid Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ProductGridSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ProductGridSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *ProductGrid*
+ */
+type ProductGridSliceVariation = ProductGridSliceDefault;
+
+/**
+ * ProductGrid Shared Slice
+ *
+ * - **API ID**: `product_grid`
+ * - **Description**: ProductGrid
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ProductGridSlice = prismic.SharedSlice<
+  "product_grid",
+  ProductGridSliceVariation
+>;
+
 declare module "@prismicio/client" {
   interface CreateClient {
     (
@@ -237,14 +393,21 @@ declare module "@prismicio/client" {
       HomepageDocument,
       HomepageDocumentData,
       HomepageDocumentDataSlicesSlice,
-      SetingsDocument,
-      SetingsDocumentData,
-      SetingsDocumentDataNavigationItem,
+      SettingsDocument,
+      SettingsDocumentData,
+      SettingsDocumentDataNavigationItem,
+      SkateboardDocument,
+      SkateboardDocumentData,
       AllDocumentTypes,
       HeroSlice,
       HeroSliceDefaultPrimary,
       HeroSliceVariation,
       HeroSliceDefault,
+      ProductGridSlice,
+      ProductGridSliceDefaultPrimaryProductItem,
+      ProductGridSliceDefaultPrimary,
+      ProductGridSliceVariation,
+      ProductGridSliceDefault,
     };
   }
 }
