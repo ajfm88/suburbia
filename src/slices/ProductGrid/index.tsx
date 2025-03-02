@@ -17,7 +17,7 @@ export type ProductGridProps = SliceComponentProps<Content.ProductGridSlice>;
 /**
  * Component for "ProductGrid" Slices.
  */
-const ProductGrid: FC<ProductGridProps> = ({ slice }) => {
+const ProductGrid = ({ slice }: ProductGridProps): JSX.Element => {
   return (
     <Bounded
       data-slice-type={slice.slice_type}
@@ -30,13 +30,14 @@ const ProductGrid: FC<ProductGridProps> = ({ slice }) => {
       <div className="text-center ~mb-6/10">
         <PrismicRichText field={slice.primary.body} />
       </div>
-      {slice.primary.product.map(({ skateboard }) => {
-        return (
-          isFilled.contentRelationship(skateboard) && (
-            <SkateboardProduct key={skateboard.id} id={skateboard.id} />
-          )
-        );
-      })}
+      <div className="grid w-full grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+        {slice.primary.product.map(
+          ({ skateboard }) =>
+            isFilled.contentRelationship(skateboard) && (
+              <SkateboardProduct key={skateboard.id} id={skateboard.id} />
+            )
+        )}
+      </div>
     </Bounded>
   );
 };
