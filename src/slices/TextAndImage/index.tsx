@@ -1,4 +1,6 @@
-import { FC } from "react";
+import { Bounded } from "@/components/Bounded";
+import { ButtonLink } from "@/components/ButtonLink";
+import { Heading } from "@/components/Heading";
 import { Content } from "@prismicio/client";
 import {
   PrismicRichText,
@@ -6,11 +8,13 @@ import {
   SliceComponentProps,
 } from "@prismicio/react";
 import clsx from "clsx";
-
-import { Bounded } from "@/components/Bounded";
-import { ButtonLink } from "@/components/ButtonLink";
-import { Heading } from "@/components/Heading";
 import { ParallaxImage } from "./ParallaxImage";
+
+declare module "react" {
+  interface CSSProperties {
+    "--index"?: number;
+  }
+}
 
 /**
  * Props for `TextAndImage`.
@@ -20,7 +24,7 @@ export type TextAndImageProps = SliceComponentProps<Content.TextAndImageSlice>;
 /**
  * Component for "TextAndImage" Slices.
  */
-const TextAndImage: FC<TextAndImageProps> = ({ slice }) => {
+const TextAndImage = ({ slice, index }: TextAndImageProps): JSX.Element => {
   const theme = slice.primary.theme;
   return (
     <Bounded
@@ -33,6 +37,7 @@ const TextAndImage: FC<TextAndImageProps> = ({ slice }) => {
         theme === "Navy" && "bg-texture bg-brand-navy text-white",
         theme === "Lime" && "bg-texture bg-brand-lime"
       )}
+      style={{ "--index": index }}
     >
       <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-2 md:gap-24">
         <div
