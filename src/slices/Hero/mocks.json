@@ -35,6 +35,62 @@
 					"url": "http://twitter.com",
 					"text": "your"
 				}
+			},
+			"skateboard_deck_texture": {
+				"origin": {
+					"id": "main",
+					"url": "https://images.unsplash.com/photo-1545239351-1141bd82e8a6",
+					"width": 3212,
+					"height": 3880
+				},
+				"url": "https://images.unsplash.com/photo-1545239351-1141bd82e8a6",
+				"width": 3212,
+				"height": 3880,
+				"edit": {
+					"zoom": 1,
+					"crop": {
+						"x": 0,
+						"y": 0
+					},
+					"background": "transparent"
+				},
+				"credits": null,
+				"alt": null,
+				"__TYPE__": "ImageContent",
+				"thumbnails": {}
+			},
+			"skateboard_wheel_texture": {
+				"origin": {
+					"id": "main",
+					"url": "https://images.unsplash.com/photo-1537498425277-c283d32ef9db",
+					"width": 4380,
+					"height": 2895
+				},
+				"url": "https://images.unsplash.com/photo-1537498425277-c283d32ef9db",
+				"width": 4380,
+				"height": 2895,
+				"edit": {
+					"zoom": 1,
+					"crop": {
+						"x": 0,
+						"y": 0
+					},
+					"background": "transparent"
+				},
+				"credits": null,
+				"alt": null,
+				"__TYPE__": "ImageContent",
+				"thumbnails": {}
+			},
+			"skateboard_truck_color": {
+				"__TYPE__": "FieldContent",
+				"value": "#749e75",
+				"type": "Color"
+			},
+			"skateboard_bolt_color": {
+				"__TYPE__": "FieldContent",
+				"value": "#12c03f",
+				"type": "Color"
 			}
 		},
 		"items": []
