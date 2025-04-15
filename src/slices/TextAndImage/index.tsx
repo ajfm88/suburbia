@@ -1,6 +1,3 @@
-import { Bounded } from "@/components/Bounded";
-import { ButtonLink } from "@/components/ButtonLink";
-import { Heading } from "@/components/Heading";
 import { Content } from "@prismicio/client";
 import {
   PrismicRichText,
@@ -8,8 +5,12 @@ import {
   SliceComponentProps,
 } from "@prismicio/react";
 import clsx from "clsx";
-import { ParallaxImage } from "./ParallaxImage";
+
+import { Bounded } from "@/components/Bounded";
+import { ButtonLink } from "@/components/ButtonLink";
+import { Heading } from "@/components/Heading";
 import { SlideIn } from "@/components/SlideIn";
+import { ParallaxImage } from "./ParallaxImage";
 
 declare module "react" {
   interface CSSProperties {
@@ -66,6 +67,7 @@ const TextAndImage = ({ slice, index }: TextAndImageProps): JSX.Element => {
             </ButtonLink>
           </SlideIn>
         </div>
+
         <ParallaxImage
           foregroundImage={slice.primary.foreground_image}
           backgroundImage={slice.primary.background_image}

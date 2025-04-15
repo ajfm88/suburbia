@@ -6,7 +6,7 @@ import { createClient } from "@/prismicio";
 import { PrismicNextLink } from "@prismicio/next";
 
 export async function Header() {
-  const client = createClient;
+  const client = createClient();
   const settings = await client.getSingle("settings");
 
   return (
