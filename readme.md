@@ -40,7 +40,7 @@
 
 ## <a name="features">🔋 Features</a>
 
-🖥️ **Beautiful Sections**: Includes hero, services, features, how to use, roadmap, pricing, footer, and header.
+🖥️ **Beautiful Sections**: Includes hero page, skateboard customizer page, footer, and header.
 
 ✨ **Parallax Animations**: Engaging effects triggered by mouse movement and scrolling.
 
